@@ -2,29 +2,34 @@
     
 int main()  
 {  
-    // inicializa o nome da variável 
+    // Inicializa o nome da variável 
     int i, NOP, sum=0,count=0, y, quant, wt=0, tat=0, at[10], bt[10], temp[10];  
-    float avg_wt, avg_tat;  
-    printf(" Número total de processos no sistema: ");  
+    float media_wt, media_tat;  
+    printf("Número total de processos no sistema: ");  
     scanf("%d", &NOP);  
-    y = NOP; // Atribui o número do processo à variável y 
+    // Atribui o número do processo à variável y 
+    y = NOP;
     
-    // Use for loop to enter the details of the process like Arrival time and the Burst Time  
-    for(i=0; i<NOP; i++)  
+    // Loop para exibir as informações dos processos, entre a Arrival time (hora da chegada) e o Burst time (tempo de execução)
+    for(i = 0; i < NOP; i++)  
     {  
-        printf("\n Insira a hora de chegada e explosão do processo[%d]\n", i+1);  
-        printf(" Hora de chegada é: \t");  // Aceita hora de chegada  
+        printf("\n Insira o Arrival time e Burst time[%d]\n", i+1);  
+        // Insere o Arrival time  
+        printf("Arrival time: \t");
         scanf("%d", &at[i]);  
-        printf(" \nO tempo de rajada: \t"); // Aceitar o tempo de rajada
+        // Insere o Burst time 
+        printf(" \n Burst time: \t");
         scanf("%d", &bt[i]);  
-        temp[i] = bt[i]; // armazene o tempo de intermitência na matriz temp  
+        // Armazena o tempo de intermitência na matriz temp
+        temp[i] = bt[i];  
     }  
-    // Aceite o quant de tempo 
+    // Insere o Time Quantum
     printf("Insira o Time Quantum para o processo: \t");  
     scanf("%d", &quant);  
-    // Exibe o processo Não, tempo de rajada, tempo de retorno e o tempo de espera 
-    printf("\n Processo Num \t\t Burst Time \t\t TurnAround \t\t Tempo de Espera ");  
-    for(sum=0, i = 0; y!=0; )  
+    
+    // Exibe o processo Num, Burst time (tempo de execução), TurnAround (tempo de retorno) e o Waiting Time (tempo de espera)
+    printf("\n Processo Num \t\t Burst Time \t\t TurnAround \t\t Waiting Time ");  
+    for(sum = 0, i = 0; y!=0; )  
     {     
         if(temp[i] <= quant && temp[i] > 0) // define as condições   
         {  
@@ -39,7 +44,8 @@ int main()
         }  
         if(temp[i]==0 && count==1)  
         {  
-            y--; //decrementa o nº do processo. 
+            // Decrementa o nº do processo 
+            y--;
             printf("\nProcesso Num[%d] \t\t %d\t\t\t\t %d\t\t\t %d", i+1, bt[i], sum-at[i], sum-at[i]-bt[i]);  
             wt = wt+sum-at[i]-bt[i];  
             tat = tat+sum-at[i];  
@@ -58,9 +64,9 @@ int main()
             i=0;  
         }  
     }  
-    // representa o tempo médio de espera e o tempo de retorno 
-    avg_wt = wt * 1.0/NOP;  
-    avg_tat = tat * 1.0/NOP;  
-    printf("\n Average Turn Around Time: \t%f", avg_wt);  
-    printf("\n Average Waiting Time: \t%f", avg_tat);  
+    // Exibe o tempo médio de espera e de retorno 
+    media_wt = wt * 1.0/NOP;  
+    media_tat = tat * 1.0/NOP;  
+    printf("\n Média do Turn Around Time: \t%f", media_wt);  
+    printf("\n Média do Waiting Time: \t%f", media_tat);  
 }  
