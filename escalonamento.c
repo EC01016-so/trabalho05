@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /* Estrutura */
 struct processos {
     int id;                   /* Identifição do processo*/              
